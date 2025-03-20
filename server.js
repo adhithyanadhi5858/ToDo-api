@@ -35,6 +35,10 @@ const storage = multer.diskStorage({
   },
 });
 
+app.get("",(req,res)=>{
+  res.send("Hello World")
+})
+
 const upload = multer({ storage });
 
 const fs = require('fs')
@@ -156,7 +160,6 @@ app.get("/",async(req,res)=>{
     console.log(req.body)
     bcrypt.hash(pass, saltRounds, async function(err, hash) {
       if(hash){
-        
         const newUser= await User.create({...req.body,password:hash})
         res.send({message : "Register Completed Successfully"})
       }else{
